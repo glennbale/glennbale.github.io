@@ -100,12 +100,21 @@ footer {
   color: white;
   text-align: center;
   padding: 20px;
-  font-size: 0.9em;
+  font-size: 0.8em;
+}
+
+footer p {
+  margin: 0;
 }
 
 footer ul {
-  list-style-type: none;
+  margin: 0;
   padding: 0;
+  list-style: none;
+}
+
+footer li {
+  margin: 2px 0;
 }
 
 footer a {
