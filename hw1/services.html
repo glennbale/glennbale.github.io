@@ -4,9 +4,108 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cloud Computing</title>
-    <link rel="stylesheet" href="style.css" />
+    <link href="css/styles.css" rel="stylesheet" />
   </head>
   <body>
-    <h1>Cloud Computing!</h1>
+    <header>
+      <h1>Cloud Computing</h1>
+      <p>Understanding the Technology Behind Modern Computing</p>
+    </header>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html" id="current">Cloud Services</a>
+      <a href="benefits.html">Benefits</a>
+      <a href="security.html">Security</a>
+    </nav>
+    <main>
+      <h2>Types of Cloud Services</h2>
+
+      <p>
+        Cloud computing is often divided into three main service models:
+        Infrastructure as a Service, Platform as a Service, and Software as a
+        Service. Each model gives users a different level of control and
+        responsibility.
+      </p>
+
+      <img
+        src="img/services.jpg"
+        alt="Diagram showing different cloud service models"
+        class="page-image"
+      />
+
+      <section class="three-column">
+        <article>
+          <h3>IaaS</h3>
+          <p>
+            Infrastructure as a Service provides basic computing resources such
+            as virtual machines, storage, and networking. Companies use IaaS
+            when they want control over servers without buying physical
+            hardware.
+          </p>
+        </article>
+
+        <article>
+          <h3>PaaS</h3>
+          <p>
+            Platform as a Service gives developers tools to build, test, and
+            deploy applications. The cloud provider manages the servers and
+            operating systems, while developers focus on writing code.
+          </p>
+        </article>
+
+        <article>
+          <h3>SaaS</h3>
+          <p>
+            Software as a Service lets users access software through a web
+            browser. Examples include email, online storage, and productivity
+            applications like Google Docs or Microsoft 365.
+          </p>
+        </article>
+      </section>
+      <h3>How These Services Work Together</h3>
+      <p>
+        These service models can support different needs. A company might use
+        IaaS when it needs more control over servers, PaaS when developers are
+        building applications, and SaaS when employees simply need ready-to-use
+        software.
+      </p>
+
+      <div class="page-navigation">
+        <a href="index.html">&laquo; Home</a>
+        <a href="benefits.html">Benefits &raquo;</a>
+      </div>
+    </main>
+    <footer>
+      <hr />
+      <p>CST336 Homework 1</p>
+      <p><strong>Sources</strong></p>
+      <ul>
+        <li>
+          <a
+            href="https://aws.amazon.com/what-is-cloud-computing/"
+            target="_blank"
+          >
+            Amazon Web Services - What is Cloud Computing?
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-cloud-computing"
+            target="_blank"
+          >
+            Microsoft Azure - What is Cloud Computing?
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://cloud.google.com/learn/what-is-cloud-computing"
+            target="_blank"
+            >Google Cloud - What is Cloud Computing?</a
+          >
+        </li>
+      </ul>
+    </footer>
   </body>
 </html>
