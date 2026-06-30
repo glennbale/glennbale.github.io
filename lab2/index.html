@@ -1,8 +1,10 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
     <title>Guess a Number</title>
-    <meta charset="utf-8" />
+    <link href="css/styles.css" rel="stylesheet" />
   </head>
   <body>
     <header>
@@ -17,6 +19,9 @@
       <button id="resetBtn">Reset</button>
       <div id="feedback"></div>
       <div>Previous Guesses: <span id="guesses"></span></div>
+      <div>Attempts left: <span id="attemptsLeft">7</span></div>
+      <div>Wins: <span id="numberOfWins"></span></div>
+      <div>Loses: <span id="numberOfLoses"></span></div>
     </div>
     <script src="js/script.js"></script>
   </body>

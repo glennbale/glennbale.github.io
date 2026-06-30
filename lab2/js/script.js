@@ -1,6 +1,8 @@
 //Global variables
 let randomNumber;
 let attempts = 0;
+let numberOfWins = 0;
+let numberOfLoses = 0;
 
 initializeGame();
 
@@ -8,6 +10,7 @@ function initializeGame() {
   randomNumber = Math.floor(Math.random() * 99) + 1;
   console.log("randomNumber:" + randomNumber);
   attempts = 0;
+  document.getElementById("attemptsLeft").textContent = 7;
 
   //hiding the Reset button
   document.querySelector("#resetBtn").style.display = "none";
@@ -42,16 +45,21 @@ function checkGuess() {
     return;
   }
   attempts++;
+  document.getElementById("attemptsLeft").textContent = 7 - attempts;
   console.log("Attempts:" + attempts);
   feedback.style.color = "orange";
   if (guess == randomNumber) {
     feedback.textContent = "You guessed it! You Won!";
+    numberOfWins++;
+    document.getElementById("numberOfWins").textContent = numberOfWins;
     feedback.style.color = "darkgreen";
     gameOver();
   } else {
     document.querySelector("#guesses").textContent += guess + " ";
     if (attempts == 7) {
       feedback.textContent = "Sorry, you lost!";
+      numberOfLoses++;
+      document.getElementById("numberOfLoses").textContent = numberOfLoses;
       feedback.style.color = "red";
       gameOver();
     } else if (guess > randomNumber) {
