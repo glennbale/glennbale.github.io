@@ -220,8 +220,9 @@ function gradeQuiz() {
   }
   let totalScore = document.querySelector("#totalScore");
   totalScore.textContent = `Total Score: ${score}/100`;
-  if (score < 80) {
+  if (score <= 80) {
     totalScore.className = "text-danger";
+    totalScore.textContent += " You failed!";
   } else {
     totalScore.className = "text-success";
     totalScore.textContent += " Congratulations!!! You have passed";
