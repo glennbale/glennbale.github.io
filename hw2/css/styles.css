@@ -1,0 +1,67 @@
+body {
+  background-image: url("../img/background.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.mark-icon {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+ol {
+  display: inline-block;
+  text-align: left;
+  counter-reset: question;
+  list-style: none;
+  padding-left: 0;
+}
+
+ol li {
+  margin-bottom: 30px;
+  counter-increment: question;
+  position: relative;
+  width: 75%;
+  min-height: 150px;
+  margin: 30px auto;
+  padding: 30px 35px 30px 110px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+ol li::before {
+  content: counter(question) ".";
+  position: absolute;
+  top: 32px;
+  left: 30px;
+  width: 48px;
+  height: 48px;
+  border: 2px solid #0d6efd;
+  border-radius: 10px;
+  color: #0d6efd;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 44px;
+}
+
+ol li h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+ol li input[type="text"],
+ol li input[type="number"],
+ol li select {
+  max-width: 320px;
+}
+
+[id$="Feedback"] {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 8px 18px;
+  border-radius: 8px;
+}

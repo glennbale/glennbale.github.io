@@ -16,6 +16,7 @@ function setMarkImage(index, imageName, altText) {
   let img = document.createElement("img");
   img.src = `img/${imageName}`;
   img.alt = altText;
+  img.classList.add("mark-icon");
   markContainer.appendChild(img);
 }
 
@@ -24,7 +25,7 @@ function rightAnswer(index) {
   feedback.textContent = "Correct!";
   feedback.className = "bg-success text-white";
   setMarkImage(index, "checkmark.png", "Checkmark");
-  score += 20;
+  score += 10;
 }
 
 function wrongAnswer(index) {
@@ -69,12 +70,63 @@ function displayQ4Choices() {
 
 function isFormValid() {
   let isValid = true;
-  let q1Response = document.querySelector("#q1").value;
+  // let q1Response = document.querySelector("#q1").value;
+  // let q2Response = document.querySelector("#q2").value;
   let validationFdbk = document.querySelector("#validationFdbk");
 
-  if (q1Response === "") {
-    isValid = false;
-    validationFdbk.textContent = "Question 1 was not answered";
+  // if (q1Response === "") {
+  //   isValid = false;
+  //   validationFdbk.textContent = "Question 1 was not answered";
+  // }
+
+  //validate questions with id
+  for (let i of [1, 2, 7, 8, 9]) {
+    let response = document.querySelector(`#q${i}`).value;
+
+    if (response === "") {
+      validationFdbk.textContent = `Question ${i} was not answered`;
+      return false;
+    }
+  }
+
+  // validate question 3
+  if (
+    !document.querySelector("#Jackson").checked &&
+    !document.querySelector("#Franklin").checked &&
+    !document.querySelector("#Jefferson").checked &&
+    !document.querySelector("#Roosevelt").checked
+  ) {
+    validationFdbk.textContent = "Question 3 was not answered";
+    return false;
+  }
+
+  // validate question 4
+  if (!document.querySelector("input[name='q4']:checked")) {
+    validationFdbk.textContent = "Question 4 was not answered";
+    return false;
+  }
+
+  // validate question 5
+  if (!document.querySelector("input[name=q5]:checked")) {
+    validationFdbk.textContent = "Question 5 was not answered";
+    return false;
+  }
+
+  // validate question 6
+  if (
+    !document.querySelector("#Superior").checked &&
+    !document.querySelector("#Michigan").checked &&
+    !document.querySelector("#Tahoe").checked &&
+    !document.querySelector("#Erie").checked
+  ) {
+    validationFdbk.textContent = "Question 6 was not answered";
+    return false;
+  }
+
+  // validate question 10
+  if (!document.querySelector("input[name='q10']:checked")) {
+    validationFdbk.textContent = "Question 10 was not answered";
+    return false;
   }
 
   return isValid;
@@ -121,8 +173,53 @@ function gradeQuiz() {
     wrongAnswer(4);
   }
 
+  let selectedQ5 = document.querySelector("input[name=q5]:checked");
+  if (selectedQ5 !== null && selectedQ5.value === "Pacific") {
+    rightAnswer(5);
+  } else {
+    wrongAnswer(5);
+  }
+
+  if (
+    document.querySelector("#Superior").checked &&
+    document.querySelector("#Michigan").checked &&
+    document.querySelector("#Erie").checked &&
+    !document.querySelector("#Tahoe").checked
+  ) {
+    rightAnswer(6);
+  } else {
+    wrongAnswer(6);
+  }
+
+  let q7Response = document.querySelector("#q7").value;
+  if (q7Response === "ak") {
+    rightAnswer(7);
+  } else {
+    wrongAnswer(7);
+  }
+
+  let q8Response = document.querySelector("#q8").value;
+  if (q8Response === "50") {
+    rightAnswer(8);
+  } else {
+    wrongAnswer(8);
+  }
+
+  let q9Response = document.querySelector("#q9").value.toLowerCase();
+  if (q9Response === "florida") {
+    rightAnswer(9);
+  } else {
+    wrongAnswer(9);
+  }
+
+  let selectedQ10 = document.querySelector("input[name=q10]:checked");
+  if (selectedQ10 !== null && selectedQ10.value === "West") {
+    rightAnswer(10);
+  } else {
+    wrongAnswer(10);
+  }
   let totalScore = document.querySelector("#totalScore");
-  totalScore.textContent = `Total Score: ${score}`;
+  totalScore.textContent = `Total Score: ${score}/100`;
   if (score < 80) {
     totalScore.className = "text-danger";
   } else {
