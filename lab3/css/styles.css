@@ -1,0 +1,23 @@
+body {
+  background: linear-gradient(to bottom right, #e3f2fd, #ffffff);
+  min-height: 100vh;
+}
+
+.page-title {
+  background-color: #0d6efd;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+footer {
+  background-color: #163852;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.8em;
+}
+
+footer p {
+  margin: 0;
+}
