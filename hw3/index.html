@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rick and Morty Explorer</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Rick and Morty Explorer</h1>
+
+      <div class="card shadow p-4 mb-4">
+        <h4 class="mb-3">Filter Characters</h4>
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="characterName" class="form-label">
+              Character Name
+            </label>
+
+            <input
+              type="text"
+              id="characterName"
+              class="form-control"
+              placeholder="Example: Rick"
+            />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="locationName" class="form-label"> Location </label>
+
+            <select id="locationName" class="form-select">
+              <option value="">All Locations</option>
+            </select>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="episodeName" class="form-label"> Episode </label>
+
+            <input
+              type="text"
+              id="episodeName"
+              class="form-control"
+              placeholder="Example: Pilot"
+            />
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button id="filterBtn" class="btn btn-success px-5">
+            Apply Filters
+          </button>
+
+          <button id="resetBtn" class="btn btn-secondary px-5 ms-2">
+            Reset
+          </button>
+        </div>
+
+        <div class="mt-3">
+          <small id="errorMessage" class="text-danger"> </small>
+        </div>
+      </div>
+
+      <div id="results" class="row g-4">
+        <!-- Character cards appear here -->
+      </div>
+      <div id="pagination" class="text-center my-4"></div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
