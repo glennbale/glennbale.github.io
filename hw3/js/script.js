@@ -7,12 +7,14 @@ let baseUrl = "https://rickandmortyapi.com/api/character";
 let currentPage = 1;
 let currentNameFilter = "";
 let currentLocationFilter = "";
+let currentEpisodeFilter = "";
 let filteredCharacters = [];
 let filteredMode = false;
 let charactersPerPage = 20;
 
 loadCharacters(1);
 loadLocations();
+loadEpisodes();
 
 async function loadCharacters(page) {
   currentPage = page;
@@ -125,6 +127,60 @@ async function getCharactersByLocation(locationId) {
   return characters;
 }
 
+async function loadEpisodes() {
+  let page = 1;
+  let morePages = true;
+  let episodeSelect = document.querySelector("#episodeName");
+
+  while (morePages) {
+    let response = await fetch(
+      `https://rickandmortyapi.com/api/episode?page=${page}`,
+    );
+
+    let data = await response.json();
+
+    for (let episode of data.results) {
+      episodeSelect.innerHTML += `
+        <option value="${episode.id}">
+          ${episode.episode} - ${episode.name}
+        </option>
+      `;
+    }
+
+    if (data.info.next) {
+      page++;
+    } else {
+      morePages = false;
+    }
+  }
+}
+
+async function getCharactersByEpisode(episodeId) {
+  let response = await fetch(
+    `https://rickandmortyapi.com/api/episode/${episodeId}`,
+  );
+
+  if (!response.ok) {
+    return [];
+  }
+
+  let episode = await response.json();
+
+  if (episode.characters.length === 0) {
+    return [];
+  }
+
+  let characterPromises = episode.characters.map(function (characterUrl) {
+    return fetch(characterUrl).then(function (response) {
+      return response.json();
+    });
+  });
+
+  let characters = await Promise.all(characterPromises);
+
+  return characters;
+}
+
 function displayPagination(info) {
   let pagination = document.querySelector("#pagination");
 
@@ -157,41 +213,58 @@ async function applyFilters() {
 
   currentNameFilter = document.querySelector("#characterName").value.trim();
   currentLocationFilter = document.querySelector("#locationName").value;
+  currentEpisodeFilter = document.querySelector("#episodeName").value;
 
-  if (currentNameFilter === "" && currentLocationFilter === "") {
+  if (
+    currentNameFilter === "" &&
+    currentLocationFilter === "" &&
+    currentEpisodeFilter === ""
+  ) {
     errorMessage.textContent =
-      "Please enter a character name or select a location.";
+      "Please enter a name, select a location, or select an episode.";
     return;
   }
+
+  let characters = [];
 
   if (currentLocationFilter !== "") {
-    let locationCharacters = await getCharactersByLocation(
-      currentLocationFilter,
-    );
-
-    if (currentNameFilter !== "") {
-      locationCharacters = locationCharacters.filter(function (character) {
-        return character.name
-          .toLowerCase()
-          .includes(currentNameFilter.toLowerCase());
-      });
-    }
-
-    if (locationCharacters.length === 0) {
-      document.querySelector("#results").innerHTML = "";
-      document.querySelector("#pagination").innerHTML = "";
-      errorMessage.textContent = "No characters found.";
-      return;
-    }
-
-    filteredCharacters = locationCharacters;
-    filteredMode = true;
-    displayFilteredPage(1);
+    characters = await getCharactersByLocation(currentLocationFilter);
+  } else if (currentEpisodeFilter !== "") {
+    characters = await getCharactersByEpisode(currentEpisodeFilter);
+  } else {
+    loadCharacters(1);
     return;
   }
 
-  filteredCharacters = [];
-  loadCharacters(1);
+  if (currentEpisodeFilter !== "" && currentLocationFilter !== "") {
+    let episodeCharacters = await getCharactersByEpisode(currentEpisodeFilter);
+
+    let episodeIds = episodeCharacters.map(function (character) {
+      return character.id;
+    });
+
+    characters = characters.filter(function (character) {
+      return episodeIds.includes(character.id);
+    });
+  }
+
+  if (currentNameFilter !== "") {
+    characters = characters.filter(function (character) {
+      return character.name
+        .toLowerCase()
+        .includes(currentNameFilter.toLowerCase());
+    });
+  }
+
+  if (characters.length === 0) {
+    document.querySelector("#results").innerHTML = "";
+    document.querySelector("#pagination").innerHTML = "";
+    errorMessage.textContent = "No characters found.";
+    return;
+  }
+
+  filteredCharacters = characters;
+  displayFilteredPage(1);
 }
 
 function displayFilteredPage(page) {
@@ -236,10 +309,12 @@ function resetFilters() {
   // Reset form fields
   document.querySelector("#characterName").value = "";
   document.querySelector("#locationName").value = "";
+  document.querySelector("#episodeName").value = "";
 
   // Reset global variables
   currentNameFilter = "";
   currentLocationFilter = "";
+  currentEpisodeFilter = "";
   filteredCharacters = [];
   currentPage = 1;
 

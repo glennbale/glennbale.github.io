@@ -1,0 +1,60 @@
+body {
+  background: linear-gradient(to bottom, #a8edea, #fed6e3);
+  min-height: 100vh;
+}
+
+h1 {
+  background-color: #00b5cc;
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+  border-radius: 15px;
+  border: none;
+}
+
+.card-img-top {
+  height: 320px;
+  object-fit: cover;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  transition: 0.25s;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.page-btn,
+.filtered-page-btn {
+  min-width: 45px;
+}
+
+.btn-primary {
+  font-weight: bold;
+}
+
+#filterBtn {
+  margin-right: 10px;
+}
+
+#results {
+  margin-top: 30px;
+}
+
+.card-title {
+  color: #00b5cc;
+  font-weight: bold;
+}
+
+footer {
+  background-color: #0d1b2a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
