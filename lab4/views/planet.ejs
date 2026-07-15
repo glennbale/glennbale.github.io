@@ -1,0 +1,59 @@
+    <%- include('partials/head.ejs') %>
+    <h1>The Solar System</h1>
+    <%- include('partials/nav.ejs') %>
+    <h2>Planet <%= planetName %></h2>
+    <img src="<%=   planetInfo.image  %>" />
+    <!-- <p>Distance From Sun: <%= planetInfo.distanceFromSun %> <p> 
+    <p>Year Length: <%= planetInfo.yearLength %> </p> 
+    <p>Description: <%= planetInfo.description %> <p> 
+    <p>Radius: <%= planetInfo.radius %> </p> 
+    <p>Website Link: <%= planetInfo.websiteLink %> </p> 
+    <p>One Earth Day: <%= planetInfo.oneEarthDay %> </p> 
+    <p>Moons: <%= planetInfo.moons %> </p>  -->
+
+    <h2>The <%= planetName %></h2>
+
+    <dl class="planet-details">
+        <div class="detail">
+            <dt>Distance from Sun</dt>
+            <dd><%= planetInfo.distanceFromSun %></dd>
+        </div>
+
+        <div class="detail">
+            <dt>Year Length</dt>
+            <dd><%= planetInfo.yearLength %></dd>
+        </div>
+
+        <div class="detail">
+            <dt>Description</dt>
+            <dd><%= planetInfo.description %></dd>
+        </div>
+
+        <div class="detail">
+            <dt>Radius</dt>
+            <dd><%= planetInfo.radius %></dd>
+        </div>
+
+        <div class="detail">
+            <dt>Website</dt>
+            <dd>
+            <a href="<%= planetInfo.websiteLink %>" target="_blank">
+                Learn more
+            </a>
+            </dd>
+        </div>
+
+        <div class="detail">
+            <dt>One Earth Day</dt>
+            <dd><%= planetInfo.oneEarthDay %></dd>
+        </div>
+
+        <div class="detail">
+            <dt>Moons</dt>
+            <dd><%= planetInfo.moons %></dd>
+        </div>
+    </dl>
+    <%- include('partials/footer.ejs') %>
+  </body>
+  
+</html>
